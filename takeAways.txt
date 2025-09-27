@@ -1,0 +1,41 @@
+npx supabase login //Logins to dashboard for the project.
+ 
+npx supabase gen types --project-id djtrsbnmuzvpfgshvqyt > ./utils/supabase/database-types.ts
+if you changing anything in database/tables, you'll have to update project types.
+ 
+ 
+//if we making a async call to supabase, we can create a return type for that call: 
+import { QueryData } from '@supabase/supabase-js';  
+export type HomePostsType = QueryData<ReturnType<typeof getHomePosts>>
+
+
+//QueryData is a TypeScript helper type provided by @supabase/supabase-js.
+Its job:
+➡️ Take the result type of a Supabase query (which is wrapped in things like Promise<PostgrestResponse<T>>) and extract the actual row data type (T) inside.
+
+("Why you need QueryData"
+
+When you call Supabase queries, the return type isn’t just the rows — it’s wrapped with metadata about errors, status, etc. For example:
+
+const { data, error } = await supabase.from("posts").select("*")
+
+
+The raw return type is something like:
+
+Promise<PostgrestResponse<PostRowType[]>>
+
+
+The thing you usually care about is data → which has type:
+
+PostRowType[] | null
+
+Instead of manually unwrapping that, QueryData does the work.
+
+Example
+const query = supabase.from("posts").select("id, title")
+
+type Raw = typeof query
+// Raw is: PostgrestFilterBuilder<...> (lots of generics!)
+
+type Data = QueryData<Raw>
+// Data is: { id: number; title: string }[])
