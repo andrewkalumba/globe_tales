@@ -9,7 +9,7 @@ const AccountLinks = async () => {
         <div>
             {user ?
                 <>
-                    <Link href="/create" className="button-secondary bg-sky-950">Create post</Link>
+                    <Link href="/createform" className="button-secondary bg-sky-950">Create post</Link>
                     <SignOutButton />
                 </> :
 
