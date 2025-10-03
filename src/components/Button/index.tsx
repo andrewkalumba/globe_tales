@@ -7,7 +7,7 @@ const Button = () => {
     const Router = useRouter()
 
     const handleClick = () => {
-        Router.back()
+        Router.push('/')
     }
     return (
         <>

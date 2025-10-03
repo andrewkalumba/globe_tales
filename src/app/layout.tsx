@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { QueryClientProvider } from "@/providers/query-client-provider";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-800`}>
+        <Toaster/>
         <QueryClientProvider>
           <ReactQueryDevtools />
           {children}

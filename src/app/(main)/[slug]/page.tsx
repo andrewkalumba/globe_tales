@@ -1,10 +1,18 @@
 import { getSinglePost } from "@/utils/supabase/queries"
 import Button from "@/components/Button"
+import { createClient } from "@/utils/supabase/server-client"
+import DeleteButton from "./DeleteButton"
 
 const SinglePost = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
 
   const { data, error } = await getSinglePost(slug)
+
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  //console.log("logged in user", user?.id)
+
+  const isAuthor = user?.id === data?.user_id ? true : false
 
   if (error) {
     return (
@@ -24,6 +32,8 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
               {data.title}
             </h1>
+            {/* <p>Author: {data.user_id}</p>
+            <p>Loggedin: {user?.id}</p>  */}
           </header>
           {data.images && (
             <div className="flex justify-center">
@@ -35,6 +45,11 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-line">
               {data.content}
             </p>
+
+            {isAuthor &&
+              <DeleteButton postId={data.id} />
+            }
+
           </section>
 
           <div className="flex justify-between">

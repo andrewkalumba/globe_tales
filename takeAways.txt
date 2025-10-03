@@ -1,6 +1,6 @@
 npx supabase login //Logins to dashboard for the project.
  
-npx supabase gen types --project-id djtrsbnmuzvpfgshvqyt > ./utils/supabase/database-types.ts
+npx supabase gen types --project-id vjajrmwqfosbsrweixvu > ./src/utils/supabase/database-types.ts
 if you changing anything in database/tables, you'll have to update project types.
  
  

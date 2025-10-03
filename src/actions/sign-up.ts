@@ -13,7 +13,7 @@ export const SignUp = async (userdata:z.infer<typeof signUpSchemas>) => {
     if (user && user.email) {
         const { data, error } = await supabase
             .from('users')
-            .insert([{email: user.email, username: parsedData.username}])
+            .insert([{email: user.email, username: parsedData.username, id: user.id}])
     }
     if (error) throw error
     redirect('/')
