@@ -4,10 +4,10 @@ const Logo = () => {
     return (
         <Link href="/" className="inline-block">
             <img
-                src="/sweden.jpg"
+                src="/logo.jpg"
                 alt="logo"
-                width={50}
-                height={50}
+                width={90}
+                height={90}
                 className="rounded-full object-cover"
             />
         </Link>

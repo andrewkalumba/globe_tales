@@ -24,15 +24,17 @@ export const middleware = async (request: NextRequest) => {
 
     const { data: { user }, error } = await supabase.auth.getUser()
 
-    //regex
+    //regex   ("\") means treat it as a normal character not anything special. ("+" means unlimited times/ not one time)
     const protectedRoutes = [
-        /^\/create$/
+        /^\/create$/,
+        /^\/[^\/]+\/edit$/
+
     ]
-        console.log(user);
+
     if (!user && protectedRoutes.some(route => route.test(request.nextUrl.pathname))) {
         const newUrl = request.nextUrl.clone()
         newUrl.pathname = 'auth/login'
-        
+
         return NextResponse.redirect(newUrl)
     }
 

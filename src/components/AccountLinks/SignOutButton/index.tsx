@@ -7,6 +7,6 @@ export const SignOutButton = () => {
     }
 
     return (
-        <button onClick={HandleSignOut} className="bg-amber-700 rounded-2xl p-4 border-2">Sign out</button>
+        <button onClick={HandleSignOut} className=" bg-gray-900/90 rounded-2xl p-4 border-2 text-white">Sign out</button>
     )
 }

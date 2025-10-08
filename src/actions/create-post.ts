@@ -1,40 +1,45 @@
-"use server";
+"use server"
 
-import { postSchemas } from "./schemas";
-import { createClient } from "@/utils/supabase/server-client";
-import { slugify } from "@/utils/slugifys";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { Database, TablesInsert } from "@/utils/supabase/database-types";
+import { createClient } from "@/utils/supabase/server-client"
+import { slugify } from "@/utils/slugifys"
+import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
+import { PostInput } from "./schemas"
+import { uploadImage } from "@/utils/supabase/upload-images"
 
-export const CreatePost = async (userdata: Database["public"]["Tables"]["posts"]["Insert"]) => {
 
-    const parsedData = postSchemas.parse({
-        title: userdata.title,
-        content: userdata.content,
-        image: userdata.images
-    });
 
-    const slug = slugify(parsedData.title);
+export const CreatePost = async (userdata: PostInput) => {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
 
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Not authorized")
 
-    if (!user) throw new Error("Not authorized");
+  const slug = slugify(userdata.title)
 
-    const { error } = await supabase
-        .from("posts")
-        .insert([{
-            user_id: user.id,
-            slug,
-            title: parsedData.title,
-            content: parsedData.content,
-            images: userdata.images || null
-        }])
-        .throwOnError();
+  const imageFile = userdata.images?.get("image")
+ console.log("Image form: ",imageFile)
+  if (!(imageFile instanceof File) && imageFile !== null) {
+    throw new Error("Malformed file")
+  }
 
-    if (error) throw error;
+ 
 
-    revalidatePath("/");
-    redirect(`/${slug}`);
-};
+  const imageUrl = imageFile ? await uploadImage(imageFile) : null
+
+  const { error } = await supabase
+    .from("posts")
+    .insert([{
+      user_id: user.id,
+      slug,
+      title: userdata.title,
+      content: userdata.content,
+      images: imageUrl
+    }])
+    .throwOnError()
+
+  if (error) throw error
+
+  revalidatePath("/")
+  redirect(`/${slug}`)
+}

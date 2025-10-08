@@ -9,7 +9,7 @@ interface PageProps {
 }
 
 const SinglePostPage = async (props: PageProps) => {
-  const slug = props.params.slug
+  const slug = await props.params.slug
 
   const { data, error } = await getSinglePost(slug)
 

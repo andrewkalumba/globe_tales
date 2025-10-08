@@ -1,24 +1,24 @@
+"use server"
 import { v4 as uuid } from "uuid"
 import { createClient } from "./server-client"
 
-export const uploadImage = async (image: File) => {
+export const uploadImage = async (image: File) => { //file is inbuilt and has many properties like name
   const supabase = await createClient()
 
-//   const ext = image.name.split(".")
-//   const path = `posts/${uuid()}.${ext}`
-
   const imageName = image.name.split(".")
-  const path = `${imageName[0]}-${uuid()}.${imageName[1]}`
+  const path = `posts/${imageName[0]}-${uuid()}.${imageName[1]}`
 
-  const { error } = await supabase.storage
+  const { data, error } = await supabase.storage
     .from("images")
     .upload(path, image, { upsert: true })
 
-  if (error) throw error
+  if (error) console.log(error) //if its not sucessful, throw error else return the publicUrl
 
   const { data: { publicUrl } } = supabase.storage
     .from("images")
     .getPublicUrl(path)
+
+  console.log("Public url: ", publicUrl)
 
   return publicUrl
 }

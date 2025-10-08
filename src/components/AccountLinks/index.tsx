@@ -6,10 +6,10 @@ const AccountLinks = async () => {
     const supabase = await createClient()
     const { data: { user }, error } = await supabase.auth.getUser()
     return (
-        <div>
+        <div className="flex gap-6">
             {user ?
                 <>
-                    <Link href="/createform" className="button-secondary bg-sky-950">Create post</Link>
+                    <Link href="/createform" className="button-secondary bg-gray-900/90 text-center text-sm ">Create post</Link>
                     <SignOutButton />
                 </> :
 

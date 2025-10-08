@@ -3,6 +3,7 @@
 import Button from "@/components/Button"
 import DeleteButton from "@/components/DeleteButton"
 import { motion } from "framer-motion"
+import EditButton from "../EditButton"
 
 interface PostContentProps {
     post: any
@@ -66,6 +67,7 @@ const PostContent = ({ post, isAuthor }: PostContentProps) => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }} >
                             <DeleteButton postId={post.id} />
+                            <EditButton slug={post.slug} />
                         </motion.div>
                     )}
                 </motion.section>
