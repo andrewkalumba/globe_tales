@@ -47,9 +47,6 @@ const MorePosts = ({ posts }: { posts: PostWithImages [] }) => {
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                         }}>
-                        {post.images && (
-                            <img src={post.images} alt={post.title} width={40} height={40} className="rounded-full" />
-                        )}
                         <div className="p-5 flex flex-col flex-1">
                             <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-2 line-clamp-2">
                                 {post.title}

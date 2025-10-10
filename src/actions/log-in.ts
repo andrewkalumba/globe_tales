@@ -10,10 +10,10 @@ export const LogIn = async (userdata: logInType) => {
     const supabase = await createClient()
     const { data: { user }, error } = await supabase.auth.signInWithPassword(parsedData)
 
-    if (!user) {
-        throw new Error("No user found with these credentials")
-    }
+    // if (!user) {
+    //     throw new Error("No user found with these credentials")
+    // }
 
-    if (error) throw error
+    if (error) return { error: error.message }
     redirect("/")
 }

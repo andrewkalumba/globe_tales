@@ -39,3 +39,14 @@ type Raw = typeof query
 
 type Data = QueryData<Raw>
 // Data is: { id: number; title: string }[])
+
+
+
+//solving error when password is wrong in vercel or deployment (   const parsedData = logInSchema.parse(userDataValues);
+ 
+    const supabase = await createClient();
+    const { data: { user }, error } = await supabase.auth.signInWithPassword(parsedData);
+ 
+    if (error) return { error: error.message }  
+ 
+    redirect('/');)
