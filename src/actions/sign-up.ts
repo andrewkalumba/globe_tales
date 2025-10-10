@@ -1,10 +1,10 @@
 "use server"
-import z from "zod"
+
 import { createClient } from "@/utils/supabase/server-client"
 import { redirect } from "next/navigation"
-import { signUpSchemas } from "./schemas"
+import { signUpSchemas, signUpType } from "./schemas"
 
-export const SignUp = async (userdata:z.infer<typeof signUpSchemas>) => {
+export const SignUp = async (userdata: signUpType ) => {
     const parsedData = signUpSchemas.parse(userdata)
     const supabase = await createClient()
 

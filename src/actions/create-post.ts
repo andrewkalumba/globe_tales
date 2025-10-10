@@ -7,39 +7,38 @@ import { redirect } from "next/navigation"
 import { PostInput } from "./schemas"
 import { uploadImage } from "@/utils/supabase/upload-images"
 
-
-
 export const CreatePost = async (userdata: PostInput) => {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+    console.log("image parameter:", typeof userdata.images)
 
-  if (!user) throw new Error("Not authorized")
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
 
-  const slug = slugify(userdata.title)
+    if (!user) throw new Error("Not authorized")
 
-  const imageFile = userdata.images?.get("image")
- console.log("Image form: ",imageFile)
-  if (!(imageFile instanceof File) && imageFile !== null) {
-    throw new Error("Malformed file")
-  }
+    const slug = slugify(userdata.title)
 
- 
+    const imageFile = userdata.images?.get("image")
+    console.log("Image form: ",typeof imageFile)
 
-  const imageUrl = imageFile ? await uploadImage(imageFile) : null
+    if (!(imageFile instanceof File) && imageFile !== null) {
+        throw new Error("Malformed image file")
+    }
 
-  const { error } = await supabase
-    .from("posts")
-    .insert([{
-      user_id: user.id,
-      slug,
-      title: userdata.title,
-      content: userdata.content,
-      images: imageUrl
-    }])
-    .throwOnError()
+    const imageUrl = imageFile ? await uploadImage(imageFile) : null
 
-  if (error) throw error
+    const { error } = await supabase
+        .from("posts")
+        .insert([{
+            user_id: user.id,
+            slug,
+            title: userdata.title,
+            content: userdata.content,
+            images: imageUrl
+        }])
+        .throwOnError()
 
-  revalidatePath("/")
-  redirect(`/${slug}`)
+    if (error) throw error
+
+    revalidatePath("/")
+    redirect(`/${slug}`)
 }

@@ -9,11 +9,9 @@ export const userSchema = z.object({
 export const postSchemas = z.object({
     title: z.string().min(5, "Title must be at least 5 characters"),
     content: z.string().optional(),
-    //images: z.instanceof(FormData).optional().nullable(),
-
-    // slug: z.string().optional(),
-    // created_at: z.date().optional(),
-    // users: userSchema.optional(),
+    images: z.instanceof(FormData).optional().nullable(),
+    slug: z.string().optional(),
+    users: userSchema.optional(),
 
 })
 
@@ -27,7 +25,7 @@ export const postWithImageSchema = z.object({
             },
 
         ).optional(),
-    slug: z.string().optional(), //added
+    slug: z.string().optional(),
     created_at: z.date().optional(),
     users: userSchema.optional(),
 
@@ -45,5 +43,7 @@ export const signUpSchemas = z.object({
     password: z.string().min(6, "Your password must be at least 6 characters"),
 })
 
+export type logInType = z.infer<typeof logInSchemas>
+export type signUpType = z.infer<typeof signUpSchemas>
 export type PostInput = z.infer<typeof postSchemas>
 export type PostWithImages = z.infer<typeof postWithImageSchema>

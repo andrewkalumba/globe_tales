@@ -9,7 +9,7 @@ const EditPage = async ({ params }: { params: { slug: string } }) => {
     return (
         <>
             {data &&
-                <EditForm postId={data.id} initialValues={{ title: data.title, content: data.content }} />}
+                <EditForm postId={data.id} initialValues={{ title: data.title, content: data.content, images: data.images }} />}
         </>
     )
 }

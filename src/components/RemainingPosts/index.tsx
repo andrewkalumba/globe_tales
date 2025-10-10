@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { fetchPosts } from "@/utils/loadPosts"
-import { PostInput, PostWithImages } from "@/actions/schemas"
+import { PostWithImages } from "@/actions/schemas"
 
 const MorePosts = ({ posts }: { posts: PostWithImages [] }) => {
 
-    // const [posts, setPosts] = useState<any[]>([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -33,12 +32,12 @@ const MorePosts = ({ posts }: { posts: PostWithImages [] }) => {
         )
 
     return (
-        <div className="min-h-screen flex flex-col items-center ">
+        <div className="min-h-screen flex flex-col items-center md:mt-6">
             <h1 className="text-3xl sm:text-2xl md:text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
                 Older Posts
             </h1>
 
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-8">
                 {posts.map((post, index) => (
                     <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col"
                         style={{

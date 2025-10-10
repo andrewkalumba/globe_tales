@@ -12,7 +12,7 @@ export const uploadImage = async (image: File) => { //file is inbuilt and has ma
     .from("images")
     .upload(path, image, { upsert: true })
 
-  if (error) console.log(error) //if its not sucessful, throw error else return the publicUrl
+  if (error) console.log(error)
 
   const { data: { publicUrl } } = supabase.storage
     .from("images")

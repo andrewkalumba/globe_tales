@@ -36,7 +36,7 @@ const SidebarPosts = ({ posts }: { posts: PostWithImages[] }) => {
                     </h3>
 
                     {post.content && (
-                        <p className="text-sm text-gray-200 mt-2 line-clamp-2">
+                        <p className="text-sm text-gray-200 mt-2 line-clamp-1">
                             {post.content}
                         </p>
                     )}

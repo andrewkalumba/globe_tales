@@ -17,7 +17,7 @@ const Create = () => {
         resolver: zodResolver(postWithImageSchema), //zod for validation
     })
 
-    const [preview, setPreview] = useState<string | null>(null)
+    // const [preview, setPreview] = useState<string | null>(null)
 
     const { mutate, error, isPending } = useMutation({
         mutationFn: CreatePost,
@@ -42,7 +42,7 @@ const Create = () => {
                 <form className="flex flex-col gap-6" onSubmit={handleSubmit(values => {
                     let imageForm = new FormData()
 
-                    if (values.images) imageForm.append('image', values.images[0])
+                    if (values.images?.length) imageForm.append('image', values.images[0])
 
                     console.log(imageForm)
                     mutate({
@@ -68,9 +68,9 @@ const Create = () => {
 
                     {errors.images && <ErrorMessage message={errors.images?.message!} />}
 
-                    {preview && (
+                    {/* {preview && (
                         <img src={preview} alt="Preview" className="rounded-lg mt-3" />
-                    )}
+                    )} */}
 
                     <button
                         type="submit"

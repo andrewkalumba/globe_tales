@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const Logo = () => {
     return (
-        <Link href="/" className="inline-block">
+        <Link href="/" className="inline-block cursor-pointer">
             <img
                 src="/logo.jpg"
                 alt="logo"

@@ -65,7 +65,7 @@ export default function Home() {
                 <MainPost post={latest} />
                 <SidebarPosts posts={right} />
             </div>
-            <div className="p-20"><MorePosts posts={remaining} /></div>
+            <div><MorePosts posts={remaining} /></div>
 
             <footer className="mt-16 text-center text-gray-500 dark:text-gray-400 text-sm">
                 Built with ❤️ using Next.js + Supabase + Tailwind
