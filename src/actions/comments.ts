@@ -18,7 +18,7 @@ export async function addComment(
     const { data, error } = await supabase
         .from("comments")
         .insert({ post_id: postId, user_id: userId, content })
-        .select("id, content, created_at, updated_at, user_id, post_id, username, users(username)")
+        .select("id, content, created_at, updated_at, user_id, post_id, username, more_comments_id, users(username)")
         .single();
 
     if (error) throw new Error(error.message);
