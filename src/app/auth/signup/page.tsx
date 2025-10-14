@@ -6,15 +6,15 @@ import SignUpForm from "./SignUpForm"
 
 const SignUpPage = () => {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+        <div className="min-h-screen flex items-center bg-[url('/world.jpg')] bg-center bg-cover justify-center bg-gray-50 px-4">
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 40 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="w-full max-w-md bg-[url('/sweden.jpg')] bg-center bg-cover rounded-xl shadow-lg p-8 space-y-6">
+                className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
 
-                <h1 className="text-2xl font-bold text-gray-900 text-center uppercase">tourism sweden 🇸🇪</h1>
+                <h1 className="text-2xl font-bold text-gray-900 text-center uppercase">Globe Tales 🌎</h1>
                 <p className="text-sm text-gray-800 text-center">
                     Please sign up to continue
                 </p>
@@ -25,7 +25,7 @@ const SignUpPage = () => {
 
                 <div className="flex items-center gap-2">
                     <div className="flex-1 h-px bg-gray-200"></div>
-                    <span className="text-xs text-gray-800">🇸🇪</span>
+                    <span className="text-xs text-gray-800">🌎</span>
                     <div className="flex-1 h-px bg-gray-200"></div>
                 </div>
 

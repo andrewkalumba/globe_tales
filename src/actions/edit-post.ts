@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import z from "zod";
 import { uploadImage } from "@/utils/supabase/upload-images";
 
-export const EditPost = async ({ postId, userdata }: { postId: number, userdata: z.infer<typeof postSchemas> }) => {
+export const EditPost = async ({ postId, userdata }: { postId: string, userdata: z.infer<typeof postSchemas> }) => {
     console.log("image param,", userdata.images, "type", typeof userdata.images)
 
     const parsedData = postSchemas.parse(userdata)

@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query"
 import { motion } from "framer-motion"
 import { toast } from "sonner"
 
-const DeleteButton = ({ postId }: { postId: number }) => {
+const DeleteButton = ({ postId }: { postId: string }) => {
     const { mutate, error } = useMutation({
         mutationFn: DeletePost,
         onMutate: () => toast("Deleting a post"),

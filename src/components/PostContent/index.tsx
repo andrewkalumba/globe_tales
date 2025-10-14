@@ -2,8 +2,9 @@
 
 import Button from "@/components/Button"
 import DeleteButton from "@/components/DeleteButton"
-import { motion, scale } from "framer-motion"
+import { motion } from "framer-motion"
 import EditButton from "../EditButton"
+import CommentsSection from "../Comments"
 
 interface PostContentProps {
     post: any
@@ -16,7 +17,7 @@ const PostContent = ({ post, isAuthor }: PostContentProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="flex justify-center md:px-6 md:py-6 bg-white min-h-screen"
+            className="flex flex-col justify-center md:px-6 md:py-6 bg-gray-50 min-h-screen"
         >
             <article className="flex flex-col gap-8 max-w-5xl w-full mx-auto bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg md:rounded-2xl p-2 md:p-10 md:mt-10 transition-all">
 
@@ -87,6 +88,9 @@ const PostContent = ({ post, isAuthor }: PostContentProps) => {
                 </motion.div>
 
             </article>
+            <div className="w-full max-w-5xl mx-auto mt-8 px-4 md:px-0">
+                <CommentsSection postId={post.id} postOwnerId={post.user_id} />
+            </div>
         </motion.div>
     )
 }

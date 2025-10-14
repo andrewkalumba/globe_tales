@@ -14,11 +14,59 @@ export type Database = {
   }
   public: {
     Tables: {
+      comments: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          more_comments_id: string | null
+          post_id: string
+          updated_at: string
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          more_comments_id?: string | null
+          post_id?: string
+          updated_at?: string
+          user_id?: string
+          username?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          more_comments_id?: string | null
+          post_id?: string
+          updated_at?: string
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       posts: {
         Row: {
           content: string | null
           created_at: string
-          id: number
+          id: string
           images: string | null
           slug: string
           title: string
@@ -27,16 +75,16 @@ export type Database = {
         Insert: {
           content?: string | null
           created_at?: string
-          id?: number
+          id?: string
           images?: string | null
           slug: string
           title: string
-          user_id: string
+          user_id?: string
         }
         Update: {
           content?: string | null
           created_at?: string
-          id?: number
+          id?: string
           images?: string | null
           slug?: string
           title?: string

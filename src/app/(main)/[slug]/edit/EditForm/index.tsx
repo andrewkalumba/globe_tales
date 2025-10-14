@@ -1,5 +1,4 @@
 "use client"
-import { CreatePost } from "@/actions/create-post"
 import { EditPost } from "@/actions/edit-post"
 import { postWithImageSchema } from "@/actions/schemas"
 import { Tables } from "@/utils/supabase/database-types"
@@ -7,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 
-const EditForm = ({ postId, initialValues }: { postId: number, initialValues: Pick<Tables<'posts'>, 'title' | 'content' | 'images'> }) => {
+const EditForm = ({ postId, initialValues }: { postId: string, initialValues: Pick<Tables<'posts'>, 'title' | 'content' | 'images'> }) => {
 
     const { register, handleSubmit } = useForm({
         resolver: zodResolver(postWithImageSchema),

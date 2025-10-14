@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { PostInput, PostWithImages } from "@/actions/schemas"
+import { PostWithImages } from "@/actions/schemas"
 
 const SidebarPosts = ({ posts }: { posts: PostWithImages[] }) => {
     return (
