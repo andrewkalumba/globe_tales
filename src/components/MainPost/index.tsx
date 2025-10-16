@@ -10,16 +10,16 @@ function MainPost({ post }: { post: PostInput }) {
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 200 }}
             className="lg:col-span-3 rounded-3xl overflow-hidden relative shadow-xl max-h-screen" >
-            <div
-                className="absolute inset-0"
+            <div className="absolute inset-0"
                 style={{
                     backgroundImage: post.images
-                        ? `url(${post.images})`
+                        ? `url(${Array.isArray(post.images) ? post.images[0] : post.images})`
                         : "url('/default-image.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     filter: "brightness(0.9)"
-                }} />
+                }}
+            />
 
             <div className="relative z-10 p-8 bg-black/50 text-white flex flex-col justify-around h-full rounded-3xl">
                 <h1 className="text-3xl font-bold">{post.title}</h1>
@@ -41,6 +41,4 @@ function MainPost({ post }: { post: PostInput }) {
         </motion.main>
     )
 }
-
-
 export default MainPost

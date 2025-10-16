@@ -9,6 +9,7 @@ import z from "zod"
 import { postWithImageSchema } from "@/actions/schemas"
 import { CreatePost } from "@/actions/create-post"
 import ErrorMessage from "@/components/ErrorMessage"
+import Button from "@/components/Button"
 
 type FormValues = z.infer<typeof postWithImageSchema>
 
@@ -42,9 +43,10 @@ const Create = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="w-full max-w-2xl mx-auto px-4 pt-[70px]"
+            className="w-full max-w-2xl mx-auto px-4 m-10"
         >
-            <div className="rounded-2xl shadow-xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-gray-200 dark:border-gray-700 p-6 sm:p-8">
+            <div className="rounded-2xl shadow-xl dark:bg-gray-900/90 backdrop-blur-md border dark:border-gray-700 p-6 sm:p-8">
+            <Button />
                 <div className="mb-6 text-center">
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
                         Create New Post

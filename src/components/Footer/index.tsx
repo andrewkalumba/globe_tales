@@ -4,7 +4,7 @@ import { MdEmail, MdLocationOn } from "react-icons/md";
 
 const Footer = () => {
     return (
-        <footer className="text-white md:mt-6">
+        <footer className="text-white">
             <div className="bg-gradient-to-r from-black via-blue-400 to-black">
                 <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 p-5">
 
@@ -43,7 +43,7 @@ const Footer = () => {
                     </div>
                 </div>
                  <div className="border-t border-gray-700 p-6 text-center text-[16px]">
-                <p>© {new Date().getFullYear()}   Built with ❤️ using Next.js + Supabase + Tailwind</p>
+                <p>© {new Date().getFullYear()} Next.js + Supabase + Tailwind</p>
             </div>
             </div>
            

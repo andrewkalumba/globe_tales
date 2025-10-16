@@ -38,17 +38,31 @@ const PostContent = ({ post, isAuthor }: PostContentProps) => {
                 <div className="flex flex-col md:flex-row gap-6 md:gap-10">
                     {post.images && Array.isArray(post.images) && post.images.length > 0 && (
                         <div className="w-full md:w-1/2 flex justify-center items-center">
-                            <div className="w-full h-full">
+                            {post.images.length === 1 ? (
                                 <motion.img
-                                    src={post.images[0]} // show first image prominently
+                                    src={post.images[0]}
                                     alt={post.title}
                                     className="w-full h-[400px] md:h-[500px] object-cover rounded-2xl shadow-md border border-gray-200 dark:border-gray-800"
                                     whileHover={{ scale: 1.03 }}
                                     transition={{ duration: 0.4 }}
                                 />
-                            </div>
+                            ) : (
+                                <div className="grid grid-cols-2 gap-2 w-full">
+                                    {post.images.map((img: string, index: number) => (
+                                        <motion.img
+                                            key={index}
+                                            src={img}
+                                            alt={`${post.title} ${index + 1}`}
+                                            className="w-full h-48 object-cover rounded-xl shadow-sm border border-gray-200 dark:border-gray-800"
+                                            whileHover={{ scale: 1.03 }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     )}
+
 
                     <motion.section
                         className="w-full md:w-1/2 text-gray-700 text-sm md:text-base bg-gray-100 hover:bg-gray-300 rounded-2xl leading-relaxed whitespace-pre-line max-h-[500px] overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"

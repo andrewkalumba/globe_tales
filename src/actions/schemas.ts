@@ -11,23 +11,25 @@ export const postSchemas = z.object({
     content: z.string().optional(),
     images: z.instanceof(FormData).optional().nullable(),
     slug: z.string().optional(),
+    user_id: z.string(),
+    created_at: z.date().optional(),
     users: userSchema.optional(),
 
 })
 
-export const postWithImageSchema = z.object({  //edit one
-  title: z.string().min(1, "Title is required"),
-  content: z.string().min(1, "Content is required"),
-  images: z
-    .any()
-    .transform((val) => {
-      if (val instanceof FileList) return Array.from(val)
-      return []
-    })
-    .optional(),
-  slug: z.string().optional(),
-  created_at: z.date().optional(),
-  users: userSchema.optional(),
+export const postWithImageSchema = z.object({
+    title: z.string().min(1, "Title is required"),
+    content: z.string().min(1, "Content is required"),
+    images: z
+        .any()
+        .transform((val) => {
+            if (val instanceof FileList) return Array.from(val)
+            return []
+        })
+        .optional(),
+    slug: z.string().optional(),
+    created_at: z.date().optional(),
+    users: userSchema.optional(),
 })
 
 export const logInSchemas = z.object({
