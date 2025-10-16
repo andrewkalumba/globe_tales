@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import { QueryClientProvider } from "@/providers/query-client-provider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -13,10 +14,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="antialiased bg-neutral-800">
-        <Toaster/>
+        <Toaster />
         <QueryClientProvider>
           <ReactQueryDevtools />
           {children}
+          <SpeedInsights />
         </QueryClientProvider>
       </body>
     </html>
