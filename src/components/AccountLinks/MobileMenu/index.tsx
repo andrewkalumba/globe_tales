@@ -55,7 +55,7 @@ export const MobileMenu = ({ user }: MobileMenuProps) => {
               <div className="flex flex-col p-2 gap-1">
                 {user ? (
                   <>
-                    <Link href="/createform" onClick={() => setOpen(false)} className="px-5 py-2 rounded-xl text-sm w-fit font-semibold text-white bg-gradient-to-r from-cyan-600 to-cyan-800 hover:from-cyan-700 hover:to-cyan-900 transition-all duration-300 shadow-md hover:shadow-lg focus:ring-2 focus:ring-cyan-400 focus:outline-none" >
+                    <Link href="/create" onClick={() => setOpen(false)} className="px-5 py-2 rounded-xl text-sm w-fit font-semibold text-white bg-gradient-to-r from-cyan-600 to-cyan-800 hover:from-cyan-700 hover:to-cyan-900 transition-all duration-300 shadow-md hover:shadow-lg focus:ring-2 focus:ring-cyan-400 focus:outline-none" >
                       Create Post
                     </Link>
                     <div className="border-t border-gray-100 my-2" />

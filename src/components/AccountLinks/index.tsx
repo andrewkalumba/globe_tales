@@ -17,7 +17,7 @@ const AccountLinks = async () => {
         {user ? (
           <>
             <Link
-              href="/createform"
+              href="/create"
               className="px-5 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan-600 to-cyan-800 hover:from-cyan-700 hover:to-cyan-900 transition-all duration-300 shadow-md hover:shadow-lg focus:ring-2 focus:ring-cyan-400 focus:outline-none"
             >
               Create Post
