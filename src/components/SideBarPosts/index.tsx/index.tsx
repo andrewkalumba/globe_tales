@@ -42,9 +42,6 @@ const SidebarPosts = ({ posts }: { posts: PostWithImages[] }) => {
                     )}
 
                     <div className="flex items-center justify-end mt-auto gap-2">
-                        {/* {post.images && (
-                            <img src={post.images} alt={post.title} width={40} height={40} className="rounded-full border border-white/40 object-cover" />
-                        )} */}
                         <p className="text-xs italic font-medium text-green-200">
                             by {post.users?.username || "Anonymous"}
                         </p>

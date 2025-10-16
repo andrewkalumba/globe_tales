@@ -182,7 +182,7 @@ const CommentsSection = ({ postId, postOwnerId }: CommentsSectionProps) => {
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-3 bg-gray-50 p-6 rounded-2xl shadow-md w-full max-w-3xl mx-auto"
+            className="mt-3 mb-3 bg-gray-50 p-6 rounded-2xl shadow-md w-full max-w-3xl mx-auto"
         >
             <h3 className="text-2xl font-bold mb-6">Comments 💬</h3>
 

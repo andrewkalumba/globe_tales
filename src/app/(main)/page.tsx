@@ -68,7 +68,7 @@ export default function Home() {
             <div><MorePosts posts={remaining} /></div>
 
             <footer className="mt-16 text-center text-gray-500 dark:text-gray-400 text-sm">
-                Built with ❤️ using Next.js + Supabase + Tailwind
+              
             </footer>
         </div>
     )

@@ -1,24 +1,37 @@
 "use server"
+
 import { v4 as uuid } from "uuid"
 import { createClient } from "./server-client"
 
-export const uploadImage = async (image: File) => { //file is inbuilt and has many properties like name
+/**
+ * Uploads multiple images to Supabase Storage and returns their public URLs.
+ * @param images - Array of image files to upload
+ * @returns Array of public URLs
+ */
+export const uploadImages = async (images: File[]): Promise<string[]> => {
   const supabase = await createClient()
 
-  const imageName = image.name.split(".")
-  const path = `posts/${imageName[0]}-${uuid()}.${imageName[1]}`
+  const uploadedUrls: string[] = []
 
-  const { data, error } = await supabase.storage
-    .from("images")
-    .upload(path, image, { upsert: true })
+  for (const image of images) {
+    const ext = image.name.split(".").pop()
+    const path = `posts/${uuid()}.${ext}`
 
-  if (error) console.log(error)
+    const { error } = await supabase.storage
+      .from("images")
+      .upload(path, image, { upsert: true })
 
-  const { data: { publicUrl } } = supabase.storage
-    .from("images")
-    .getPublicUrl(path)
+    if (error) {
+      console.error("Supabase upload error:", error)
+      continue
+    }
 
-  console.log("Public url: ", publicUrl)
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from("images").getPublicUrl(path)
 
-  return publicUrl
+    uploadedUrls.push(publicUrl)
+  }
+
+  return uploadedUrls
 }

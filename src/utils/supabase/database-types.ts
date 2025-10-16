@@ -67,7 +67,7 @@ export type Database = {
           content: string | null
           created_at: string
           id: string
-          images: string | null
+          images: Json | null
           slug: string
           title: string
           user_id: string
@@ -76,7 +76,7 @@ export type Database = {
           content?: string | null
           created_at?: string
           id?: string
-          images?: string | null
+          images?: Json | null
           slug: string
           title: string
           user_id?: string
@@ -85,7 +85,7 @@ export type Database = {
           content?: string | null
           created_at?: string
           id?: string
-          images?: string | null
+          images?: Json | null
           slug?: string
           title?: string
           user_id?: string

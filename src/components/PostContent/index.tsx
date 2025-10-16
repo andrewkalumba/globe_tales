@@ -36,15 +36,25 @@ const PostContent = ({ post, isAuthor }: PostContentProps) => {
                 </header>
 
                 <div className="flex flex-col md:flex-row gap-10">
-                    {post.images && (
-                        <motion.div
-                            className="w-full md:w-1/2 overflow-hidden rounded-xl shadow-md border border-gray-200 dark:border-gray-800"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.4 }}
-                        >
-                            <img src={post.images} alt={post.title} className="w-full h-full object-cover rounded-xl" />
-                        </motion.div>
+                    {post.images && Array.isArray(post.images) && post.images.length > 0 && (
+                        <div className="flex flex-wrap gap-4 w-full md:w-1/2">
+                            {post.images.map((img: string, i: number) => (
+                                <motion.div
+                                    key={i}
+                                    className="w-full sm:w-1/2 overflow-hidden rounded-xl shadow-md border border-gray-200 dark:border-gray-800"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.4 }}
+                                >
+                                    <img
+                                        src={img}
+                                        alt={`${post.title} - ${i + 1}`}
+                                        className="w-full h-64 object-cover rounded-xl"
+                                    />
+                                </motion.div>
+                            ))}
+                        </div>
                     )}
+
 
                     <motion.section
                         className="w-full md:w-1/2 text-gray-700 text-sm md:text-base bg-gray-100 hover:bg-gray-300 rounded-2xl leading-relaxed whitespace-pre-line max-h-[60vh] overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"

@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
 const Layout = ({ children, }: Readonly<{
@@ -7,6 +8,7 @@ const Layout = ({ children, }: Readonly<{
         <>
             <Header />
             {children}
+            <Footer />
         </>)
 }
 

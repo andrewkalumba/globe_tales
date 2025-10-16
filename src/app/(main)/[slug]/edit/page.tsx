@@ -2,16 +2,29 @@ import { getSinglePost } from "@/utils/supabase/queries"
 import EditForm from "./EditForm"
 
 const EditPage = async ({ params }: { params: { slug: string } }) => {
-    const slug = await params.slug
+  const slug = params.slug
+  const { data, error } = await getSinglePost(slug)
 
-    const { data, error } = await getSinglePost(slug)
+  if (!data) return null
 
-    return (
-        <>
-            {data &&
-                <EditForm postId={data.id} initialValues={{ title: data.title, content: data.content, images: data.images }} />}
-        </>
-    )
+  // Transform Supabase JSON to string[] | undefined
+  let images: string[] | undefined
+  if (data.images && Array.isArray(data.images)) {
+    images = data.images.filter((img): img is string => typeof img === "string")
+  }
+
+  return (
+    <>
+      <EditForm
+        postId={data.id}
+        initialValues={{
+          title: data.title,
+          content: data.content ?? "",
+          images,
+        }}
+      />
+    </>
+  )
 }
 
 export default EditPage

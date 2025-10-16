@@ -15,22 +15,20 @@ export const postSchemas = z.object({
 
 })
 
-export const postWithImageSchema = z.object({
-    title: z.string().min(1, "Title is required"),
-    content: z.string().min(1, "Content is required"),
-    images: z.any()
-        .transform(
-            (value) => {
-                return value as FileList
-            },
-
-        ).optional(),
-    slug: z.string().optional(),
-    created_at: z.date().optional(),
-    users: userSchema.optional(),
-
+export const postWithImageSchema = z.object({  //edit one
+  title: z.string().min(1, "Title is required"),
+  content: z.string().min(1, "Content is required"),
+  images: z
+    .any()
+    .transform((val) => {
+      if (val instanceof FileList) return Array.from(val)
+      return []
+    })
+    .optional(),
+  slug: z.string().optional(),
+  created_at: z.date().optional(),
+  users: userSchema.optional(),
 })
-
 
 export const logInSchemas = z.object({
     email: z.string().email("Please enter a valid email"),
