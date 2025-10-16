@@ -35,37 +35,31 @@ const PostContent = ({ post, isAuthor }: PostContentProps) => {
                     <Button />
                 </header>
 
-                <div className="flex flex-col md:flex-row gap-10">
+                <div className="flex flex-col md:flex-row gap-6 md:gap-10">
                     {post.images && Array.isArray(post.images) && post.images.length > 0 && (
-                        <div className="flex flex-wrap gap-4 w-full md:w-1/2">
-                            {post.images.map((img: string, i: number) => (
-                                <motion.div
-                                    key={i}
-                                    className="w-full sm:w-1/2 overflow-hidden rounded-xl shadow-md border border-gray-200 dark:border-gray-800"
-                                    whileHover={{ scale: 1.05 }}
+                        <div className="w-full md:w-1/2 flex justify-center items-center">
+                            <div className="w-full h-full">
+                                <motion.img
+                                    src={post.images[0]} // show first image prominently
+                                    alt={post.title}
+                                    className="w-full h-[400px] md:h-[500px] object-cover rounded-2xl shadow-md border border-gray-200 dark:border-gray-800"
+                                    whileHover={{ scale: 1.03 }}
                                     transition={{ duration: 0.4 }}
-                                >
-                                    <img
-                                        src={img}
-                                        alt={`${post.title} - ${i + 1}`}
-                                        className="w-full h-64 object-cover rounded-xl"
-                                    />
-                                </motion.div>
-                            ))}
+                                />
+                            </div>
                         </div>
                     )}
 
-
                     <motion.section
-                        className="w-full md:w-1/2 text-gray-700 text-sm md:text-base bg-gray-100 hover:bg-gray-300 rounded-2xl leading-relaxed whitespace-pre-line max-h-[60vh] overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
+                        className="w-full md:w-1/2 text-gray-700 text-sm md:text-base bg-gray-100 hover:bg-gray-300 rounded-2xl leading-relaxed whitespace-pre-line max-h-[500px] overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        whileFocus={{ scale: 1.2 }}
                     >
                         <p>{post.content}</p>
                     </motion.section>
                 </div>
+
 
                 {isAuthor && (
                     <div className="flex justify-end items-center gap-4" >

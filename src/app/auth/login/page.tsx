@@ -6,7 +6,7 @@ import LogInForm from "./LogInForm"
 
 const LogInPage = () => {
     return (
-        <div className="min-h-screen flex items-center bg-[url('/back.jpg')] bg-center bg-cover justify-center bg-gray-50 px-4">
+        <div className="min-h-screen flex items-center bg-[url('/logo.jpg')] bg-center bg-cover justify-center bg-gray-50 px-0 md:px-4">
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}

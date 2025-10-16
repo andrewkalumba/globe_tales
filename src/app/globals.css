@@ -1,14 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceland&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
-
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-@layer components {
-  .button-primary {@apply bg-red-500 text-amber-50 p-4 font-bold rounded-2xl}
-  .button-secondary {@apply bg-red-500 text-amber-50 p-3 font-bold rounded-2xl}
-  .button-tertiary {@apply bg-gray-800 text-amber-50 p-3 font-bold rounded-2xl}
 }
 
 @theme inline {
@@ -28,5 +23,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Quantico", "Iceland";
+  font-weight: 400;
+  font-style: normal;
 }
