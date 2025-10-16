@@ -7,7 +7,6 @@ const EditPage = async ({ params }: { params: { slug: string } }) => {
 
   if (!data) return null
 
-  // Transform Supabase JSON to string[] | undefined
   let images: string[] | undefined
   if (data.images && Array.isArray(data.images)) {
     images = data.images.filter((img): img is string => typeof img === "string")
