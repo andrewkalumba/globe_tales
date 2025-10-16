@@ -66,10 +66,6 @@ export default function Home() {
                 <SidebarPosts posts={right} />
             </div>
             <div><MorePosts posts={remaining} /></div>
-
-            <footer className="mt-16 text-center text-gray-500 dark:text-gray-400 text-sm">
-              
-            </footer>
         </div>
     )
 }

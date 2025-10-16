@@ -17,7 +17,7 @@ interface EditFormProps {
   }
 }
 
-const EditForm: React.FC<EditFormProps> = ({ postId, initialValues }) => {
+const EditForm = ({ postId, initialValues }: EditFormProps) => {
   const [newFiles, setNewFiles] = useState<File[]>([])
   const [previews, setPreviews] = useState<string[]>([])
 
@@ -77,7 +77,6 @@ const EditForm: React.FC<EditFormProps> = ({ postId, initialValues }) => {
         className="w-full border px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
       />
 
-      {/* Existing images */}
       {initialValues.images?.length! > 0 && (
         <div className="mt-2">
           <span className="text-sm font-medium">Current Images</span>
@@ -94,7 +93,6 @@ const EditForm: React.FC<EditFormProps> = ({ postId, initialValues }) => {
         </div>
       )}
 
-      {/* New image uploads */}
       <label className="text-sm font-medium mt-3">Upload New Images</label>
       <input
         type="file"
