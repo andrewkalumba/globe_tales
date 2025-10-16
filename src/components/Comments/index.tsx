@@ -20,7 +20,7 @@ const CommentsSection = ({ postId, postOwnerId }: CommentsSectionProps) => {
     const supabase = createClient();
     const session = useSession();
     const currentUserId = session?.user?.id;
-    const currentUsername = session?.user?.user_metadata?.username || "You";
+    // const currentUsername = session?.user?.user_metadata?.username || "You";
 
     const [comments, setComments] = useState<CommentWithUser[]>([]);
     const [newComment, setNewComment] = useState("");
