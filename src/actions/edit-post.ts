@@ -4,44 +4,37 @@ import { createClient } from "@/utils/supabase/server-client"
 import { uploadImages } from "@/utils/supabase/upload-images"
 import { PostWithImages } from "./schemas"
 
-interface EditPostArgs {
-  postId: string
-  userdata: PostWithImages
+interface EditPosts {
+    postId: string
+    userdata: PostWithImages
 }
 
-/**
- * Updates an existing post. Optionally uploads and replaces images.
- */
-export const EditPost = async ({
-  postId,
-  userdata,
-}: EditPostArgs): Promise<void> => {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) throw new Error("Not authorized")
+export const EditPost = async ({ postId, userdata }: EditPosts) => {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
 
-  let imageUrls: string[] = []
+    if (!user) throw new Error("Not authorized")
 
-  if (userdata.images && userdata.images.length > 0) {
-    imageUrls = await uploadImages(userdata.images)
-  }
+    let imageUrls: string[] = []
 
-  const updateData: Record<string, unknown> = {
-    title: userdata.title,
-    content: userdata.content,
-  }
+    if (userdata.images && userdata.images.length > 0) {
+        imageUrls = await uploadImages(userdata.images)
+    }
 
-  if (imageUrls.length > 0) {
-    updateData.images = imageUrls
-  }
+    const updateData: Record<string, unknown> = {
+        title: userdata.title,
+        content: userdata.content,
+    }
 
-  const { error } = await supabase
-    .from("posts")
-    .update(updateData)
-    .eq("id", postId)
-    .throwOnError()
+    if (imageUrls.length > 0) {
+        updateData.images = imageUrls
+    }
 
-  if (error) throw new Error(error)
+    const { error } = await supabase
+        .from("posts")
+        .update(updateData)
+        .eq("id", postId)
+        .throwOnError()
+
+    if (error) throw new Error(error)
 }
