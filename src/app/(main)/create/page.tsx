@@ -46,7 +46,7 @@ const Create = () => {
             className="w-full max-w-2xl mx-auto px-4 m-10"
         >
             <div className="rounded-2xl shadow-xl dark:bg-gray-900/90 backdrop-blur-md border dark:border-gray-700 p-6 sm:p-8">
-            <Button />
+                <Button />
                 <div className="mb-6 text-center">
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
                         Create New Post

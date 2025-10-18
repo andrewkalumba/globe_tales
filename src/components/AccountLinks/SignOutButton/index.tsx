@@ -7,6 +7,6 @@ export const SignOutButton = () => {
     }
 
     return (
-        <button onClick={HandleSignOut} className="px-5 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 transition-all duration-300 shadow-md hover:shadow-lg focus:ring-2 focus:ring-red-400 focus:outline-none">Sign out</button>
+        <button onClick={HandleSignOut} className="px-8 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#2A324B] to-red-800 hover:from-red-700 hover:to-red-900 transition-all duration-300 shadow-md hover:shadow-lg focus:ring-2 focus:ring-red-400 focus:outline-none">Sign out</button>
     )
 }
