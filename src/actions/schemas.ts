@@ -22,8 +22,8 @@ export const postWithImageSchema = z.object({
     content: z.string().min(1, "Content is required"),
     images: z
         .any()
-        .transform((val) => {
-            if (val instanceof FileList) return Array.from(val)
+        .transform((item) => {
+            if (item instanceof FileList) return Array.from(item)
             return []
         })
         .optional(),

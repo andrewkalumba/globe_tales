@@ -14,7 +14,7 @@ function MainPost({ post }: { post: PostInput }) {
                 style={{
                     backgroundImage: post.images
                         ? `url(${Array.isArray(post.images) ? post.images[0] : post.images})`
-                        : "url('/default-image.jpg')",
+                        : "url('/world.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     filter: "brightness(0.9)"
