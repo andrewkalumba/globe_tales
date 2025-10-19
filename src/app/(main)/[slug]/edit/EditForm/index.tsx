@@ -13,7 +13,7 @@ interface EditFormProps {
   initialValues: {
     title: string
     content?: string
-    images?: string[] // URLs of existing images
+    images?: string[]
   }
 }
 
@@ -53,7 +53,7 @@ const EditForm = ({ postId, initialValues }: EditFormProps) => {
           userdata: {
             title: values.title,
             content: values.content!,
-            images: newFiles.length > 0 ? newFiles : undefined, // only send new images
+            images: newFiles.length > 0 ? newFiles : undefined
           },
         })
       })}

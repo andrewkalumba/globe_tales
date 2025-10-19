@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
       comments: {
         Row: {
           content: string
@@ -64,6 +85,7 @@ export type Database = {
       }
       posts: {
         Row: {
+          category_id: string | null
           content: string | null
           created_at: string
           id: string
@@ -73,6 +95,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          category_id?: string | null
           content?: string | null
           created_at?: string
           id?: string
@@ -82,6 +105,7 @@ export type Database = {
           user_id?: string
         }
         Update: {
+          category_id?: string | null
           content?: string | null
           created_at?: string
           id?: string
@@ -91,6 +115,13 @@ export type Database = {
           user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "posts_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: true
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "posts_user_id_fkey"
             columns: ["user_id"]

@@ -4,12 +4,8 @@ import { getSinglePost } from "@/utils/supabase/queries"
 import PostContent from "@/components/PostContent"
 import { createClient } from "@/utils/supabase/server-client"
 
-interface PageProps {
-  params: { slug: string }
-}
-
-const SinglePostPage = async (props: PageProps) => {
-  const slug = await props.params.slug
+const SinglePostPage = async ({ params }: { params: { slug: string } }) => {
+  const slug = await params.slug
 
   const { data, error } = await getSinglePost(slug)
 
