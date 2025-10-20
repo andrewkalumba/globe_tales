@@ -73,12 +73,6 @@ const LogInForm = () => {
                 )}
             </button>
 
-            {/* {error && (
-                <p className="text-center text-sm text-red-600 mt-2">
-                    {error.message}
-                </p>
-            )} */}
-
             {data?.error && <ErrorMessage message={data.error} />}
         </form>
     )

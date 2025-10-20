@@ -7,6 +7,9 @@ import { useMutation } from "@tanstack/react-query"
 import { postWithImageSchema, PostWithImages } from "@/actions/schemas"
 import { EditPost } from "@/actions/edit-post"
 import ErrorMessage from "@/components/ErrorMessage"
+import Button from "@/components/Button"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 interface EditFormProps {
   postId: string
@@ -29,8 +32,14 @@ const EditForm = ({ postId, initialValues }: EditFormProps) => {
     },
   })
 
+  const router = useRouter()
+
   const { mutate, error, isPending } = useMutation({
     mutationFn: EditPost,
+    onMutate: () => toast("loading"),
+    onSuccess: () => { toast.success("Update successful"), setTimeout(() => router.push("/"), 1200) },
+    onError: () => toast.error("Failed to update post")
+
   })
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,9 +66,12 @@ const EditForm = ({ postId, initialValues }: EditFormProps) => {
           },
         })
       })}
-      className="flex flex-col gap-6 max-w-2xl mx-auto bg-white/80 border border-gray-200 p-8 rounded-2xl shadow-md"
-    >
-      <h2 className="text-2xl font-semibold">Edit Post ✏️</h2>
+      className="flex flex-col gap-6 max-w-2xl mx-auto p-8 md:rounded-2xl shadow-md dark:bg-gray-900/90 backdrop-blur-md  dark:border-gray-700" >
+      <div className="flex justify-between">
+        <h2 className="text-2xl font-semibold">Edit Post</h2>
+        <Button />
+      </div>
+
 
       <label className="text-sm font-medium">Title</label>
       <input
@@ -99,7 +111,7 @@ const EditForm = ({ postId, initialValues }: EditFormProps) => {
         accept="image/*"
         multiple
         onChange={handleFileChange}
-        className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+        className="block w-1/2 text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-4"
       />
 
       {previews.length > 0 && (
@@ -126,7 +138,7 @@ const EditForm = ({ postId, initialValues }: EditFormProps) => {
       <button
         type="submit"
         disabled={isPending}
-        className="mt-4 bg-cyan-600 text-white py-3 rounded-lg font-semibold hover:bg-cyan-700 transition"
+        className="mt-4 bg-cyan-600 text-white py-3 rounded-lg font-semibold hover:bg-cyan-700 cursor-pointer transition"
       >
         {isPending ? "Updating..." : "Update Post ✨"}
       </button>

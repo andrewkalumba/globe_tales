@@ -3,6 +3,9 @@
 import { createClient } from "@/utils/supabase/server-client"
 import { uploadImages } from "@/utils/supabase/upload-images"
 import { PostWithImages } from "./schemas"
+import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
+import { success } from "zod"
 
 interface EditPosts {
     postId: string
@@ -37,4 +40,8 @@ export const EditPost = async ({ postId, userdata }: EditPosts) => {
         .throwOnError()
 
     if (error) throw new Error(error)
+
+    revalidatePath("/")
+    return { success: true }
+
 }

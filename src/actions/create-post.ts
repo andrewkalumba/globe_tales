@@ -7,22 +7,20 @@ import { redirect } from "next/navigation"
 import { PostWithImages } from "./schemas"
 import { uploadImages } from "@/utils/supabase/upload-images"
 
-/**
- * Creates a new post with multiple optional images.
- */
-export const CreatePost = async (userdata: PostWithImages): Promise<void> => {
+
+export const CreatePost = async (userdata: PostWithImages) => {
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { data: { user }, error: userError} = await supabase.auth.getUser()
+
   if (!user) throw new Error("Not authorized")
+    if (userError) return {userError: userError.message}
 
   const slug = slugify(userdata.title)
 
   const files = userdata.images || []
   const imageUrls = files.length > 0 ? await uploadImages(files) : []
 
-  const { error } = await supabase
+  const { error: insertError} = await supabase
     .from("posts")
     .insert([
       {
@@ -30,11 +28,12 @@ export const CreatePost = async (userdata: PostWithImages): Promise<void> => {
         slug,
         title: userdata.title,
         content: userdata.content,
-        images: imageUrls, // jsonb[] or text[]
+        images: imageUrls
       },
     ])
 
-  if (error) throw new Error(error.message)
+  // if (error) throw new Error(error.message)
+    if (insertError) return { insertError: insertError.message }  
 
   revalidatePath("/")
   redirect(`/${slug}`)

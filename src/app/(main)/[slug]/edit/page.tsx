@@ -13,16 +13,9 @@ const EditPage = async ({ params }: { params: { slug: string } }) => {
   }
 
   return (
-    <>
-      <EditForm
-        postId={data.id}
-        initialValues={{
-          title: data.title,
-          content: data.content ?? "",
-          images,
-        }}
-      />
-    </>
+    <div className="md:m-3">
+      <EditForm postId={data.id} initialValues={{ title: data.title, content: data.content ?? "", images }} />
+    </div>
   )
 }
 

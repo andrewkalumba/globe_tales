@@ -21,12 +21,9 @@ export const getSearchedPosts = async (searchTerm: string) => {
     return (
         await supabase.from('posts')
             .select('title, slug, id')
-            //.textSearch('title', searchTerm) //works same like the second
-        .ilike('title', `%${searchTerm}%`)
+            .ilike('title', `%${searchTerm}%`)
     )
 
 }
 
 export type HomePostType = QueryData<ReturnType<typeof getHomePosts>>
-
-//QueryData unwraps Supabase’s query return type to give you the actual shape of the rows.
